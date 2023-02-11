@@ -12,7 +12,7 @@
 	let list;
 	let items = [
 		{ name: 'Home', id: '0', list: ['Water Plants', 'Do Cooking'] },
-		{ name: 'Work/School', id: '1', list: ['Complete Documentation'] },
+		{ name: 'Work/School', id: '1', list: ['Complete Documentation', 'Complete Documentation Build'] },
 		{ name: 'Personal', id: '2', list: ['Drink Water', 'Meditate', 'Exercise'] }
 	];
 
@@ -28,9 +28,9 @@
 	<svelte:fragment slot="sidebarLeft">
 		<!-- Left Sidebar -->
 		<div class="flex h-full text-center flex-col">
-			<h1>Box</h1>
+			<h1 class="p-4">List Box</h1>
 
-			<ListBox class="text-left">
+			<ListBox class="text-left" active="bg-primary-500">
 				{#each items as item}
 					<ListBoxItem bind:group={selectedItems} name="items" value={item}>
 						{item.name}

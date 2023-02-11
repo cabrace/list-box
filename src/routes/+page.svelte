@@ -16,18 +16,21 @@
 </script>
 
 <!-- content wrapper -->
-<div class="grid grid-cols ml-10">
+<div class=" ml-10">
 	{#each $itemStore as item, i}
 		<div class="flex flex-row">
-			<div class="card pl-2 mb-2 flex flex-row gap-y-4 items-center hover:cursor-pointer" >
-
+			<!-- Card -->
+			<div class="card flex flex-row mb-4 items-stretch items-center align-middle hover:cursor-pointer" >
 				<!-- Number and input  -->
-				<span class=" bg-primary-700 rounded-sm p-2 w-16">{i + 9}</span>
-				<input class="input border-primary-300 border-6 p-2" type="text" placeholder="input text" value={item} />
-
+				<span class=" bg-primary-600 rounded-sm text-xs w-11 flex items-center justify-center">{i + 1}</span>
+				<input class="input truncate pl-2 mborder-primary-300 p-1" type="text" placeholder="input text" value={item} />
+				
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- Checkbox wrap-->
-				<div class="p-2 px-4 py-4 border-dashed border-white" on:click={handleOnClick}>
-					<input class="checkbox rounded-full" type="checkbox" on:click{handleOnClick}>
+				<!-- used to keep clickable elemnt to all of right side -->
+				<!-- Check the padding here combined with the number section above -->
+				<div class="p-2 border-dashed border-white flex items-center p-2 align-middle h-full" on:click={handleOnClick}>
+					<input class="checkbox rounded-full w-10 border-3 border-white"  type="checkbox" on:click{handleOnClick}>
 				</div>
 			</div>
 		</div>

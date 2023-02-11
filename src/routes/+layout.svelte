@@ -12,7 +12,7 @@
 	let list;
 	let items = [
 		{ name: 'Home', id: '0', list: ['Water Plants', 'Do Cooking'] },
-		{ name: 'Work/School', id: '1', list: ['Complete Documentation', 'Complete Documentation Build'] },
+		{ name: 'Work/School', id: '1', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },
 		{ name: 'Personal', id: '2', list: ['Drink Water', 'Meditate', 'Exercise'] }
 	];
 

@@ -1,2 +1,26 @@
 /*place global styles here */
 html, body { @apply h-full overflow-hidden; }
+
+[type='checkbox']:focus, [type='radio']:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --tw-ring-inset: var(
+  --tw-empty,/*!;; /*!*/);
+    */: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: #2563eb;
+    --tw-ring-offset-shadow: var(
+  --tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(
+  --tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+
+.checkbox .dark {
+    /* border-color: rgb(var(--color-primary-500) / var(--tw-border-opacity)); */
+    border: 1px solid red;
+}
+[type='checkbox'], [type='radio']{
+    border: 1px solid red;
+}

@@ -9,15 +9,26 @@
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 
-	let list;
-	let items = [
-		{ name: 'Home', id: '0', list: ['Water Plants', 'Do Cooking'] },
-		{ name: 'Work/School', id: '1', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },
-		{ name: 'Personal', id: '2', list: ['Drink Water', 'Meditate', 'Exercise'] }
-	];
+	import { onMount } from 'svelte';
 
-	$: console.log($itemStore[0]);
-	let selectedItems = items[1];
+	export let data;
+
+		console.log("data collections", data.collections)
+	
+	//After Document Load
+	onMount(async () => {
+	});
+
+	// let items = [
+	// 	{ name: 'Home', id: '0', list: ['Water Plants', 'Do Cooking'] },
+	// 	{ name: 'Work/School', id: '1', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },
+	// 	{ name: 'Personal', id: '2', list: ['Drink Water', 'Meditate', 'Exercise'] }
+	// ];
+
+	// let selectedItems = items[1];
+
+	// $: console.log($itemStore[0]);
+	let selectedItems = data.collections[0];
 
 	$: itemStore.set(selectedItems.list);
 	$: console.log($itemStore);
@@ -31,7 +42,7 @@
 			<h1 class="p-4">List Box</h1>
 
 			<ListBox class="text-left" active="bg-primary-500">
-				{#each items as item}
+				{#each data.collections as item}
 					<ListBoxItem bind:group={selectedItems} name="items" value={item}>
 						{item.name}
 					</ListBoxItem>

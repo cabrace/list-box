@@ -13,6 +13,8 @@
 			checkbox.checked = !checkbox.checked
 		}
 	}
+
+
 </script>
 
 <!-- content wrapper -->
@@ -30,7 +32,7 @@
 				<!-- used to keep clickable elemnt to all of right side -->
 				<!-- Check the padding here combined with the number section above -->
 				<div class="p-2 border-dashed border-white flex items-center p-2 align-middle h-full" on:click={handleOnClick}>
-					<input class="checkbox rounded-full w-10 border-3 border-white"  type="checkbox" on:click{handleOnClick}>
+					<input class="checkbox rounded-full w-8 border-3 border-white"  type="checkbox" on:click{handleOnClick}>
 				</div>
 			</div>
 		</div>

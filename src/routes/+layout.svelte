@@ -5,6 +5,7 @@
 	import '../app.postcss';
 
 	import { itemStore } from '$lib/stores/stores.js';
+	import ItemAdd from '$lib/components/ItemAdd.svelte'
 
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
@@ -13,22 +14,32 @@
 
 	export let data;
 
-		console.log("data collections", data.collections)
+		// console.log("data collections", data.collections)
 	
 	//After Document Load
 	onMount(async () => {
 	});
 
 	// let items = [
-	// 	{ name: 'Home', id: '0', list: ['Water Plants', 'Do Cooking'] },
-	// 	{ name: 'Work/School', id: '1', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },
-	// 	{ name: 'Personal', id: '2', list: ['Drink Water', 'Meditate', 'Exercise'] }
+	// 	{ id: 0, name: 'Home', list: ['Water Plants', 'Do Cooking'] },
+	// 	{ id: 1, name: 'Work/School', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },
+	// 	{ id:2, name: 'Personal', list: ['Drink Water', 'Meditate', 'Exercise'] }
 	// ];
 
 	// let selectedItems = items[1];
 
 	// $: console.log($itemStore[0]);
+	
+	// let currentId = data.collections[1].shift()
+
+	//get some element from the collection to set as our default selection
 	let selectedItems = data.collections[0];
+	let currentSelId;
+	// console.log("SELECTED", selectedItems)
+	let  { id } = selectedItems
+	$: console.log("currentSELId --",id)
+	$: id = selectedItems.id
+
 
 	$: itemStore.set(selectedItems.list);
 	$: console.log($itemStore);
@@ -55,15 +66,7 @@
 		<div class="text-center border border-white-400 h-full">Sidebar Right</div>
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader">
-		<div class="flex justify-center my-4">
-			<div class="card p-2 flex flex-row ">
-				<!-- <span class="p-2 bg-primary-700 rounded-sm p-3">+</span> -->
-				<input class="input border-secondary-500" type="text" placeholder="Add something new" />
-
-				<!-- UPDATE new record liek so: -->
-				<!-- db.boxes.updateOne({_id:ObjectId("63e87307293f2b4a7b6b7d4d")}, {$push: {"list": "Build new Interface"}}) -->
-			</div>
-		</div>
+		<ItemAdd></ItemAdd>
 		<!-- <div class="text-center border border-white-400">Page Header</div> -->
 	</svelte:fragment>
 	<!-- Router Slot -->

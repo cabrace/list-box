@@ -4,7 +4,7 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.postcss';
 
-	import { itemStore } from '$lib/stores/stores.js';
+	import { itemStore, currentID } from '$lib/stores/stores.js';
 	import ItemAdd from '$lib/components/ItemAdd.svelte'
 
 	import { AppShell } from '@skeletonlabs/skeleton';
@@ -34,15 +34,18 @@
 
 	//get some element from the collection to set as our default selection
 	let selectedItems = data.collections[0];
-	let currentSelId;
+	// let currentSelId;
 	// console.log("SELECTED", selectedItems)
 	let  { id } = selectedItems
-	$: console.log("currentSELId --",id)
+	// $: console.log("currentSELId --", $currentID)
 	$: id = selectedItems.id
 
 
+
 	$: itemStore.set(selectedItems.list);
+	$: currentID.set(id);
 	$: console.log($itemStore);
+	// $: console.log($currentID);
 </script>
 
 <AppShell>

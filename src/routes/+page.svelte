@@ -1,7 +1,11 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
+
+	export let data;
+
 	let {log} = console;
 	import { itemStore } from '$lib/stores/stores.js';
+	import { onMount } from 'svelte';
 
 	let valueSingle: string = 'books';
 
@@ -13,6 +17,11 @@
 			checkbox.checked = !checkbox.checked
 		}
 	}
+
+
+	onMount(async () => {
+		console.log("DATA", data)
+	});
 
 
 </script>

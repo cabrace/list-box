@@ -25,7 +25,28 @@ export const POST = async ({ request }) => {
         {ReturnDocument: true}
     )
 
+    console.log("COLLECTION", newCollectionItems)
 
+    // const selectedID = body.id;
+    // const item = body.item;
+
+    return new Response(JSON.stringify(
+        {
+            status: 200,
+            body: { message: "Success", id: body.id, items: newCollectionItems }
+        }
+    ))
+}
+
+export const DELETE = async ({ request }) => {
+    console.log("POST")
+    const body = await request.json();
+
+    let newCollectionItems = await db.collection("boxes").findOneAndDelete(
+        {_id: new ObjectId(body.id)}, 
+        {$pull: {"list": body.item}}, 
+        {ReturnDocument: true}
+    )
 
     console.log("COLLECTION", newCollectionItems)
 

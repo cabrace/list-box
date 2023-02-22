@@ -1,6 +1,6 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-
+import { invalidate } from '$app/navigation';
 	export let data;
 
 	let {log} = console;
@@ -21,6 +21,7 @@
 
 	onMount(async () => {
 		console.log("+page.svelte", data)
+		invalidate("/api/collections")
 	});
 
 

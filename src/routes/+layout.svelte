@@ -18,6 +18,7 @@
 	
 	//After Document Load
 	onMount(async () => {
+		console.log("DATA", data)
 	});
 
 	// let items = [

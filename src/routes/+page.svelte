@@ -20,7 +20,7 @@
 
 
 	onMount(async () => {
-		console.log("DATA", data)
+		console.log("+page.svelte", data)
 	});
 
 

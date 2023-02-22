@@ -1,12 +1,19 @@
 import db from '$lib/db';
 import { ObjectId } from 'mongodb';
 
-export async function load(){
+export async function load({data, request}){
 
+    if (request.method === "POST"){
+        console.log("POST server.js")
+    }
+
+
+
+    console.log("DATA layout.server.js", data)
     //Return all values without the _id
     // const collections = await db.collection("boxes").find({}, {projection: {_id:0}}).toArray();
     
-    let collData = [];
+    let collections = [];
     const WithId = await db.collection("boxes").find({}).forEach((collection) =>{
         let obj = {
             //Restructure OjectId
@@ -14,7 +21,7 @@ export async function load(){
             name: collection.name,
             list: collection.list
         }
-        collData.push(obj)
+        collections.push(obj)
     })
 
 
@@ -26,6 +33,6 @@ export async function load(){
     return {
         status: 200,
         // collections: collections
-        collections: collData
+        collections: collections
     }
 }

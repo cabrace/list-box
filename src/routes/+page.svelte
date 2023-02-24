@@ -6,15 +6,19 @@ import { invalidate } from '$app/navigation';
 	let {log} = console;
 	import { itemStore } from '$lib/stores/stores.js';
 	import { onMount } from 'svelte';
+	
+
 
 	let valueSingle: string = 'books';
 
-	function handleOnClick(e){
+	function handleChecked(e){
 		let targetType = e.target.type
 
+		log(e.target.querySelector('input').text)
 		if (typeof targetType == 'undefined') {
 			let checkbox = e.target.querySelector('.checkbox')
 			checkbox.checked = !checkbox.checked
+		log(e.target.querySelector('input'))
 		}
 	}
 
@@ -28,7 +32,7 @@ import { invalidate } from '$app/navigation';
 </script>
 
 <!-- content wrapper -->
-<div class=" ml-10">
+<div class="ml-10">
 	{#each $itemStore as item, i}
 		<div class="flex flex-row">
 			<!-- Card -->
@@ -41,8 +45,8 @@ import { invalidate } from '$app/navigation';
 				<!-- Checkbox wrap-->
 				<!-- used to keep clickable elemnt to all of right side -->
 				<!-- Check the padding here combined with the number section above -->
-				<div class="p-2 border-dashed border-white flex items-center p-2 align-middle h-full" on:click={handleOnClick}>
-					<input class="checkbox rounded-full w-8 border-3 border-white"  type="checkbox" on:click{handleOnClick}>
+				<div class="p-2 border-dashed border-white flex items-center p-2 align-middle h-full" on:click={handleChecked}>
+					<input class="checkbox rounded-full w-8 border-3 border-white"  type="checkbox" on:click{handleChecked}>
 				</div>
 			</div>
 		</div>

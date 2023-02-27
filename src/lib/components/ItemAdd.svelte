@@ -27,7 +27,7 @@
 		res = await response.json()
 		item = ''
 
-		console.log("RESPONSE ", res)
+		console.log("RESPONSE ", res.body.items.value.list)
 
 		} catch (err) {
 			console.log("There was an error")

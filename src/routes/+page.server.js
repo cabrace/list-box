@@ -26,10 +26,10 @@ export const actions = {
 		try {
 			db.addItem(coo.geta('parentid'), data.get('item'));
 		} catch (error) {
-			return fail(422, {
-				// description: data.get('description'),
-				// error: error.message
-			});
+			// throw error(422, {
+        // description: data.get('description'),
+        // error: error.message
+			// });
 		}
 	},
 

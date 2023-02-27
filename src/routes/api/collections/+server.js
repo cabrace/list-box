@@ -24,7 +24,7 @@ export const POST = async ({ request}) => {
     let newCollectionItems = await db.collection("boxes").findOneAndUpdate(
         {_id: new ObjectId(body.id)}, 
         {$push: {"list": body.item}}, 
-        {ReturnDocument: true}
+        {returnDocument: 'after'}
     )
 
     console.log("COLLECTION", newCollectionItems)

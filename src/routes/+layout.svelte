@@ -4,23 +4,33 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.postcss';
 
-	import { itemStore, currentID } from '$lib/stores/stores.js';
-	import ItemAdd from '$lib/components/ItemAdd.svelte'
 
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+	import { itemStore, currentID } from '$lib/stores/stores.js';
 
+	import ItemAdd from '$lib/components/ItemAdd.svelte'
 	import { onMount } from 'svelte';
+	import { invalidate } from '$app/navigation';
+	import { page } from '$app/stores';
+
 
 	export let data;
 
-		// console.log("data collections", data.collections)
+		console.log("+layout.svelte >> ", data.collections)
+		console.log("$page.data ", $page.data)
 	
 	//After Document Load
-	onMount(async () => {
-		console.log("DATA", data)
-	});
 
+	onMount(() => {
+		const interval = setInterval(() => {
+			invalidate('/');
+		}, 1000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	});
 	// let items = [
 	// 	{ id: 0, name: 'Home', list: ['Water Plants', 'Do Cooking'] },
 	// 	{ id: 1, name: 'Work/School', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },

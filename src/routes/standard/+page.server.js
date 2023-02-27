@@ -1,11 +1,15 @@
 import db from '$lib/db';
 import { ObjectId } from 'mongodb';
 
-// valid exports are load, prerender, csr, ssr, trailingSlash, config, or anything with a '_' prefix
+export async function load({data, request}){
 
-export async function load({request}){
+    if (request.method === "POST"){
+        console.log("POST server.js")
+    }
 
 
+
+    console.log("DATA layout.server.js", data)
     //Return all values without the _id
     // const collections = await db.collection("boxes").find({}, {projection: {_id:0}}).toArray();
     
@@ -24,19 +28,11 @@ export async function load({request}){
     
     // const collections = await db.collection("boxes").find({}).toArray();
 
-    console.log("+layout.server.js >> ", collections)
+    // console.log("collections", collections)
     // console.log("withID:", collData)
     return {
-        status: 3423400,
+        status: 200,
         // collections: collections
         collections: collections
     }
 }
-
-// export const actions = {
-//     create: async({request}) => {
-//         const formData = await request.formData()
-//         console.log("FormData", formData)
-//     } 
-
-// }

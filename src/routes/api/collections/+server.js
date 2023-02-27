@@ -15,8 +15,10 @@ export const GET = async ({ request }) => {
     return new Response(JSON.stringify({ status:200,body: {message: "Sample response"}}))
 }
 
-export const POST = async ({ request }) => {
+// export const POST = async ({ request, depends }) => {
+export const POST = async ({ request}) => {
     console.log("POST")
+    // depends('data:collections');
     const body = await request.json();
 
     let newCollectionItems = await db.collection("boxes").findOneAndUpdate(
@@ -39,7 +41,7 @@ export const POST = async ({ request }) => {
 }
 
 export const DELETE = async ({ request }) => {
-    console.log("POST")
+    console.log("DELETE")
     const body = await request.json();
 
     let newCollectionItems = await db.collection("boxes").findOneAndDelete(

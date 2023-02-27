@@ -1,12 +1,17 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
-import { invalidate } from '$app/navigation';
+
 	export let data;
+	// export let form;
 
 	let {log} = console;
 	import { itemStore } from '$lib/stores/stores.js';
 	import { onMount } from 'svelte';
+	import ItemAdd from '$lib/components/ItemAdd.svelte'
+
+	console.log("+page.svelte >> ", data.collections)
 	
+	// console.log("+page.svelte form ", form)
 
 
 	let valueSingle: string = 'books';
@@ -24,8 +29,16 @@ import { invalidate } from '$app/navigation';
 
 
 	onMount(async () => {
-		console.log("+page.svelte", data)
-		invalidate("/api/collections")
+		console.log("+page.svelte onMount()", data)
+
+		// const interval = setInterval(() => {
+		// 	// invalidate('data:collections');
+		// 	invalidateAll();
+		// }, 1000);
+
+		// return () => {
+		// 	clearInterval(interval);
+		// };
 	});
 
 
@@ -39,6 +52,7 @@ import { invalidate } from '$app/navigation';
 			<div class="card flex flex-row mb-4 items-stretch items-center align-middle hover:cursor-pointer" >
 				<!-- Number and input  -->
 				<span class=" bg-primary-600 rounded-sm text-xs w-11 flex items-center justify-center">{i + 1}</span>
+				<!-- <input type="hidden" name="item" value={item}> -->
 				<input class="input truncate pl-2 mborder-primary-300 p-1" type="text" placeholder="input text" value={item} />
 				
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -51,4 +65,5 @@ import { invalidate } from '$app/navigation';
 			</div>
 		</div>
 	{/each}
+	<!-- <ItemAdd></ItemAdd> -->
 </div>

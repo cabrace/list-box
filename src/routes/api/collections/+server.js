@@ -27,7 +27,7 @@ export const POST = async ({ request}) => {
         {returnDocument: 'after'}
     )
 
-    console.log("COLLECTION", newCollectionItems)
+    console.log("returnDocument", newCollectionItems)
 
     // const selectedID = body.id;
     // const item = body.item;

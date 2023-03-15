@@ -1,6 +1,6 @@
 import db from '$lib/db';
 import { ObjectId, ReturnDocument } from 'mongodb';
-import { collectionItemsStore, itemStore } from '$lib/stores/stores.js';
+import { collectionItemsStore, itemStore } from '$lib/stores/stores.ts';
 
 
 export const GET = async ({ request }) => {

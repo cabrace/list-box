@@ -5,9 +5,12 @@
 	import '../app.postcss';
 
 
+  import { afterNavigate} from '$app/navigation';
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-	import { itemStore, currentID } from '$lib/stores/stores.js';
+	import { itemStore, currentID } from '$lib/stores/stores.ts';
+  import { currentPageSource, storeCurrentUrl } from '$lib/stores/stores.ts';
+
 
 	import ItemAdd from '$lib/components/ItemAdd.svelte'
 	import { onMount } from 'svelte';
@@ -16,6 +19,16 @@
 
 
 	export let data;
+
+    let selected = null;
+
+
+    $: console.log("$PAGE", $page.data.id)
+    $: console.log("Page PATHNAME:", $page.url.pathname)
+
+      
+    // $: ActiveClass = (href: string) => (href === $page.url.pathname ? 'bg-primary-500 text-white-500' : '');
+    // $: console.log("Active-Class", ActiveClass)
 
 		console.log("+layout.svelte >> ", data.collections)
 		console.log("$page.data ", $page.data)
@@ -26,6 +39,17 @@
 		const interval = setInterval(() => {
 			invalidate('/');
 		}, 1000);
+
+
+   // afterNavigate(() => {
+        // Store current page route URL
+        // storeCurrentUrl.set($page.url.pathname);
+        // Scroll to top
+        // const elemPage = document.querySelector('#page');
+        // if (elemPage !== null) {
+            // elemPage.scrollTop = 0;
+        // }
+    // });
 
 		return () => {
 			clearInterval(interval);
@@ -57,20 +81,50 @@
 	$: currentID.set(id);
 	$: console.log($itemStore);
 	// $: console.log($currentID);
+
+  const handleClick = (item) => {
+    selected = item;
+  };
+
+
+  $: classActive = (href: string) => ( (href === $page.url.pathname) ? '!bg-primary-500' : '');
+  $: console.log(classActive)
 </script>
+
+   <!-- 1. If I wrap the ListBox > LinkBoxItem > a > item.name in the a tag, the surroundig empty space of the label is not linkable,  -->
+   <!-- unless i speciically click the text -->
 
 <AppShell>
 	<svelte:fragment slot="header" />
 	<svelte:fragment slot="sidebarLeft">
 		<!-- Left Sidebar -->
 		<div class="flex h-full text-center flex-col">
-			<h1 class="p-4">List Box</h1>
+			<h1 class="p-4">List</h1>
 
-			<ListBox class="text-left" active="bg-primary-500">
+      <nav class="list-nav">
+        <!-- <ul class=" list text-left flex-column"> -->
+        <h2>Box</h2>
+        <ul>
+          {#each data.collections as item}
+
+          {@const href = `/box/${item.id}`}
+          <li class:navSelected={$page.url.pathname === href} >
+            <!-- <a id="{item.id}" on:click={handleClick(item.id)} class:selected={selected === $page.url.pathname.split('/')[2]} href="/box/{item.id}"> -->
+            <a {href} class:navSelected={$page.url.pathname === href} >
+              <span class="flex-auto text-left" >{item.name}</span>
+            </a>
+          </li>
+          {/each}
+        </ul>
+      </nav>
+
+			<ListBox class="text-left" active="bg-primary-500" hover="primary-soft">
 				{#each data.collections as item}
-					<ListBoxItem bind:group={selectedItems} name="items" value={item}>
-						{item.name}
-					</ListBoxItem>
+
+        <ListBoxItem bind:group={selectedItems} name="items" value={item}>
+        {item.name}
+        </ListBoxItem>
+
 				{/each}
 			</ListBox>
 		</div>
@@ -93,3 +147,17 @@
 		<div class="text-center border border-white-400">Footer</div>
 	</svelte:fragment>
 </AppShell>
+
+<style>
+
+.navSelected{
+  background:red;
+}
+
+
+
+  a { 
+    text-decoration:none !important; 
+    color:white; 
+  } 
+</style>

@@ -1,5 +1,5 @@
 <script>
-	import { currentID } from '$lib/stores/stores.js';
+	import { currentID } from '$lib/stores/stores.ts';
 
 	let item ='';
 

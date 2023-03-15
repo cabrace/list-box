@@ -1,5 +1,5 @@
 <script>
-	import { currentID, itemStore } from '$lib/stores/stores.js';
+	import { currentID, itemStore } from '$lib/stores/stores.ts';
 	import { enhance } from '$app/forms';
 
   let addItemText = '';

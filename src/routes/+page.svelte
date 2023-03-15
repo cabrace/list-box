@@ -5,7 +5,7 @@
 	// export let form;
 
 	let {log} = console;
-	import { itemStore } from '$lib/stores/stores.js';
+	import { itemStore } from '$lib/stores/stores.ts';
 	import { onMount } from 'svelte';
 	import ItemAdd from '$lib/components/ItemAdd.svelte'
 

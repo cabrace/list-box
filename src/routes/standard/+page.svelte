@@ -1,6 +1,6 @@
 <script>
 
-	import { itemStore, currentID } from '$lib/stores/stores.js';
+	import { itemStore, currentID } from '$lib/stores/stores.ts';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     // import { ItemAdd } from '$lib/components/ItemAdd.svelte'
 	// import { onMount } from 'svelte';

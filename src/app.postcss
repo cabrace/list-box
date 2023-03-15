@@ -25,3 +25,30 @@ html, body { @apply h-full overflow-hidden; }
 [type='checkbox'], [type='radio']{
     border: 1px solid red;
 }
+
+.list-nav a:hover, .list-nav button:hover, .list-option:hover {
+    background-color: rgb(var(--color-primary-500) / .1);
+}
+.list-nav a, .list-nav button, .list-option {
+    cursor: pointer;
+    border-radius: var(--theme-rounded-base);
+}
+.list-nav a, .list-nav button, .list-option {
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+}
+.list-nav a, .list-nav button, .list-option {
+    display: flex;
+    align-items: center;
+}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+
+/* Override sidebar a tag styling very specific */
+#sidebar-left > div > div > label.listbox-item.px-4.py-2.cursor-pointer.rounded-token.px-4.py-2.bg-primary-500 > div.listbox-label.flex.space-x-4 > div > a{
+  color:white !important;
+  @apply w-full;
+}

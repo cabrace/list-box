@@ -10,6 +10,7 @@
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	import { itemStore, currentID, collectionItemsStore, selectedList_store, selectedObject_store } from '$lib/stores/stores.ts';
+  import { setContext } from 'svelte';
 
 
 	import ItemAdd from '$lib/components/ItemAdd.svelte'
@@ -20,6 +21,10 @@
 
   //get exported data from server
 	export let data;
+
+  $: console.log("+layout.svelte >> DATA ", data)
+  /* $: $selectedList_store.set(data.list) */
+  /* setContext(listStore, data.list) */
 
   let selected = null;
 
@@ -33,7 +38,7 @@
 	// let selectedItems = items[1];
 	// $: console.log($itemStore[0]);
 	// let currentId = data.collections[1].shift()
-  let selectedObject = {}
+  /* let selectedObject = {} */
 
 	//get some element from the collection to set as our default selection
 	let selectedItems = data.collections[0];
@@ -48,8 +53,8 @@
   $: console.log("SelectedID , ", selectedID)
 
   
-  $: selectedObject = data.collections.filter( collection => collection.id === selectedID)
-  $: console.log("+layout.svelte >> selectedObject ", selectedObject)
+  /* $: selectedObject = data.collections.filter( collection => collection.id === selectedID) */
+  /* $: console.log("+layout.svelte >> selectedObject ", selectedObject) */
 
   //$: $selectedObject_store.set(selectedObject)
   

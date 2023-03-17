@@ -6,31 +6,31 @@ import { ObjectId } from 'mongodb';
 export async function load({request}){
 
 
-    //Return all values without the _id
-    // const collections = await db.collection("boxes").find({}, {projection: {_id:0}}).toArray();
-    
-    let collections = [];
-    const WithId = await db.collection("boxes").find({}).forEach((collection) =>{
-        let obj = {
-            //Restructure OjectId
-            id: collection._id.toString(),
-            name: collection.name,
-            list: collection.list
-        }
-        collections.push(obj)
-    })
+  console.log("+layout.server.js >> ")
+  //Return all values without the _id
+  // const collections = await db.collection("boxes").find({}, {projection: {_id:0}}).toArray();
 
-
-    
-    // const collections = await db.collection("boxes").find({}).toArray();
-
-    console.log("+layout.server.js >> ", collections)
-    // console.log("withID:", collData)
-    return {
-        status: 3423400,
-        // collections: collections
-        collections: collections
+  let collections = [];
+  const WithId = await db.collection("boxes").find({}).forEach((collection) =>{
+    let obj = {
+      //Restructure OjectId
+      id: collection._id.toString(),
+      name: collection.name,
+      list: collection.list
     }
+    collections.push(obj)
+  })
+
+
+  // const collections = await db.collection("boxes").find({}).toArray();
+
+  console.log("+layout.server.js >> ", collections)
+  // console.log("withID:", collData)
+  return {
+    status: 3423400,
+    // collections: collections
+    collections: collections
+  }
 }
 
 // export const actions = {

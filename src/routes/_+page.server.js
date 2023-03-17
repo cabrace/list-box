@@ -1,9 +1,12 @@
 import db from '$lib/db';
 
 
-export function load(){
+export function load( {par} ){
 
+
+  console.log("+page.server.js >> ")
     // default load data to export to + page
+   
 }
 
 

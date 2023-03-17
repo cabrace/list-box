@@ -62,7 +62,6 @@
           <input class="checkbox rounded-full w-8 border-3 border-white" type="checkbox" on:click{handleChecked}>
 				</div>
   
-
 			</div>
 		</div>
 	{/each}

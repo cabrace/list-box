@@ -1,71 +1,39 @@
 <script lang="ts">
+
 	//Essential
 	import '@skeletonlabs/skeleton/themes/theme-vintage.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.postcss';
 
 
-  import { afterNavigate} from '$app/navigation';
+  // import { afterNavigate} from '$app/navigation';
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-	import { itemStore, currentID } from '$lib/stores/stores.ts';
-  import { currentPageSource, storeCurrentUrl } from '$lib/stores/stores.ts';
+	import { itemStore, currentID, collectionItemsStore, selectedList_store, selectedObject_store } from '$lib/stores/stores.ts';
 
 
 	import ItemAdd from '$lib/components/ItemAdd.svelte'
 	import { onMount } from 'svelte';
-	import { invalidate } from '$app/navigation';
+	// import { invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
 
 
+  //get exported data from server
 	export let data;
 
-    let selected = null;
+  let selected = null;
 
-
-    $: console.log("$PAGE", $page.data.id)
-    $: console.log("Page PATHNAME:", $page.url.pathname)
-
-      
     // $: ActiveClass = (href: string) => (href === $page.url.pathname ? 'bg-primary-500 text-white-500' : '');
     // $: console.log("Active-Class", ActiveClass)
 
-		console.log("+layout.svelte >> ", data.collections)
-		console.log("$page.data ", $page.data)
+//	console.log("+layout.svelte >> ", data.collections)
+//	console.log("$page.data ", $page.data)
 	
 	//After Document Load
-
-	onMount(() => {
-		const interval = setInterval(() => {
-			invalidate('/');
-		}, 1000);
-
-
-   // afterNavigate(() => {
-        // Store current page route URL
-        // storeCurrentUrl.set($page.url.pathname);
-        // Scroll to top
-        // const elemPage = document.querySelector('#page');
-        // if (elemPage !== null) {
-            // elemPage.scrollTop = 0;
-        // }
-    // });
-
-		return () => {
-			clearInterval(interval);
-		};
-	});
-	// let items = [
-	// 	{ id: 0, name: 'Home', list: ['Water Plants', 'Do Cooking'] },
-	// 	{ id: 1, name: 'Work/School', list: ['Complete Documentation', 'Complete Documentation BuildAabobberbob'] },
-	// 	{ id:2, name: 'Personal', list: ['Drink Water', 'Meditate', 'Exercise'] }
-	// ];
-
 	// let selectedItems = items[1];
-
 	// $: console.log($itemStore[0]);
-	
 	// let currentId = data.collections[1].shift()
+  let selectedObject = {}
 
 	//get some element from the collection to set as our default selection
 	let selectedItems = data.collections[0];
@@ -75,20 +43,25 @@
 	// $: console.log("currentSELId --", $currentID)
 	$: id = selectedItems.id
 
+  // Update on page change
+  $: selectedID = $page.url.pathname.split('/')[2]
+  $: console.log("SelectedID , ", selectedID)
 
+  
+  $: selectedObject = data.collections.filter( collection => collection.id === selectedID)
+  $: console.log("+layout.svelte >> selectedObject ", selectedObject)
 
-	$: itemStore.set(selectedItems.list);
-	$: currentID.set(id);
-	$: console.log($itemStore);
+  //$: $selectedObject_store.set(selectedObject)
+  
+	// $: currentID.set(id);
+	$: currentID.set(selectedID);
+  // $: selectedObject.set(data.collections.filter(collection => collection.id === selectedID )) 
+
+  //$: console.log("SelectedList >> ", selectedList);
 	// $: console.log($currentID);
 
-  const handleClick = (item) => {
-    selected = item;
-  };
 
 
-  $: classActive = (href: string) => ( (href === $page.url.pathname) ? '!bg-primary-500' : '');
-  $: console.log(classActive)
 </script>
 
    <!-- 1. If I wrap the ListBox > LinkBoxItem > a > item.name in the a tag, the surroundig empty space of the label is not linkable,  -->
@@ -101,6 +74,7 @@
 		<div class="flex h-full text-center flex-col">
 			<h1 class="p-4">List</h1>
 
+      <!-- navigation -->
       <nav class="list-nav">
         <!-- <ul class=" list text-left flex-column"> -->
         <h2>Box</h2>
@@ -118,15 +92,16 @@
         </ul>
       </nav>
 
-			<ListBox class="text-left" active="bg-primary-500" hover="primary-soft">
-				{#each data.collections as item}
+			<!-- <ListBox class="text-left" active="bg-primary-500" hover="primary-soft"> -->
+				<!-- {#each data.collections as item} -->
+<!--  -->
+        <!-- <ListBoxItem bind:group={selectedItems} name="items" value={item}> -->
+        <!-- {item.name} -->
+        <!-- </ListBoxItem> -->
+<!--  -->
+				<!-- {/each} -->
+			<!-- </ListBox> -->
 
-        <ListBoxItem bind:group={selectedItems} name="items" value={item}>
-        {item.name}
-        </ListBoxItem>
-
-				{/each}
-			</ListBox>
 		</div>
 	</svelte:fragment>
 
@@ -151,13 +126,10 @@
 <style>
 
 .navSelected{
-  background:red;
+  @apply bg-secondary-500;
+  background: red;
 }
 
 
 
-  a { 
-    text-decoration:none !important; 
-    color:white; 
-  } 
 </style>
